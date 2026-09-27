@@ -10,8 +10,8 @@ downloads it when a matching mouse appears. The behaviour comes from the
 a system package the GUI offers to install through PackageKit the first
 time it's needed.
 
-**License:** Apache-2.0, except the mouse's picture, which is Logitech's
-product photo and not covered by it. See [NOTICE](NOTICE).
+**License:** Apache-2.0, except the mouse's picture, a drawing based on Logitech's
+product photography, which is not covered by it. See [NOTICE](NOTICE).
 
 ## What's in the manifest
 

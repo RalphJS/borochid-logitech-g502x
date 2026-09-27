@@ -1,0 +1,396 @@
+{
+  "schema": 1,
+  "id": "logitech.g502x",
+  "version": "0.3.0",
+  "name": "Logitech G502 X",
+  "category": "mouse",
+  "image": "images/g502x.png",
+  "display_name": [
+    {
+      "match": "Logitech G502 X LS",
+      "format": "Logitech G502 X LIGHTSPEED"
+    }
+  ],
+  "match": [
+    {
+      "bus": "usb",
+      "vid": "0x046d",
+      "pid": "0x409f"
+    }
+  ],
+  "channel": {
+    "type": "hid"
+  },
+  "driver": {
+    "type": "logitech-hidpp",
+    "version": ">=0.1,<1",
+    "provided_by": "borochid-driver-logitech-hidpp"
+  },
+  "power_supply": {},
+  "input": {},
+  "battery": {
+    "level": "power.level",
+    "charging": "power.charging"
+  },
+  "available": "power.online",
+  "hidpp": {
+    "buttons": [
+      {
+        "id": "left",
+        "label": "Left click",
+        "number": 1,
+        "remap": false
+      },
+      {
+        "id": "right",
+        "label": "Right click",
+        "number": 2
+      },
+      {
+        "id": "middle",
+        "label": "Wheel click",
+        "number": 3
+      },
+      {
+        "id": "g4",
+        "label": "G4 (back)",
+        "number": 4,
+        "default": {
+          "button": 4
+        }
+      },
+      {
+        "id": "g6",
+        "label": "G6 (sniper)",
+        "number": 5,
+        "default": "dpi_shift"
+      },
+      {
+        "id": "g5",
+        "label": "G5 (forward)",
+        "number": 6,
+        "default": {
+          "button": 5
+        }
+      },
+      {
+        "id": "tilt_left",
+        "label": "Wheel left",
+        "number": 7,
+        "default": {
+          "hwheel": -1
+        }
+      },
+      {
+        "id": "tilt_right",
+        "label": "Wheel right",
+        "number": 8,
+        "default": {
+          "hwheel": 1
+        }
+      },
+      {
+        "id": "g9",
+        "label": "G9",
+        "number": 9,
+        "default": "disabled"
+      },
+      {
+        "id": "g8",
+        "label": "G8",
+        "number": 10,
+        "default": "dpi_up"
+      },
+      {
+        "id": "g7",
+        "label": "G7",
+        "number": 11,
+        "default": "dpi_down"
+      }
+    ],
+    "defaults": {
+      "stages": [
+        800,
+        1600,
+        3200
+      ],
+      "default_stage": 2,
+      "shift_dpi": 400,
+      "report_rate": 1000
+    }
+  },
+  "ui": [
+    {
+      "widget": "readout",
+      "label": "DPI",
+      "state": "dpi",
+      "icon": [
+        "speedometer",
+        "input-mouse",
+        "input-mouse-symbolic"
+      ]
+    },
+    {
+      "widget": "readout",
+      "label": "Report rate",
+      "state": "report_rate",
+      "suffix": " Hz"
+    },
+    {
+      "widget": "group",
+      "label": "Profile",
+      "icon": [
+        "dialog-layers",
+        "view-list-details",
+        "document-properties"
+      ],
+      "children": [
+        {
+          "widget": "stages",
+          "label": "DPI stages",
+          "state": "stages",
+          "current": "stage",
+          "default": "default_stage",
+          "min": 100,
+          "max": 25600,
+          "step": 50,
+          "max_items": 5,
+          "set": "set_stage",
+          "add": "add_stage",
+          "remove": "remove_stage",
+          "make_default": "set_default_stage",
+          "select": "select_stage",
+          "tooltip": "Click a stage to switch to it. \u2605 marks the stage the profile starts in."
+        },
+        {
+          "widget": "spin",
+          "label": "DPI shift",
+          "min": 100,
+          "max": 25600,
+          "state": "shift_dpi",
+          "action": "set_shift_dpi",
+          "param": "value",
+          "tooltip": "DPI while a button set to DPI shift is held (G6 by default)"
+        },
+        {
+          "widget": "select",
+          "label": "Report rate",
+          "state": "report_rate",
+          "action": "set_report_rate",
+          "param": "value",
+          "options": [
+            {
+              "value": 1000,
+              "label": "1000 Hz"
+            },
+            {
+              "value": 500,
+              "label": "500 Hz"
+            },
+            {
+              "value": 250,
+              "label": "250 Hz"
+            },
+            {
+              "value": 125,
+              "label": "125 Hz"
+            }
+          ]
+        }
+      ],
+      "tooltip": "Settings of the active profile (switch profiles at the top right)"
+    },
+    {
+      "widget": "group",
+      "label": "Buttons",
+      "icon": [
+        "preferences-desktop-mouse",
+        "input-mouse",
+        "input-mouse-symbolic"
+      ],
+      "children": [
+        {
+          "widget": "buttons",
+          "label": "",
+          "action": "set_binding",
+          "reset": "reset_binding",
+          "buttons": [
+            {
+              "id": "right",
+              "label": "Right click"
+            },
+            {
+              "id": "middle",
+              "label": "Wheel click"
+            },
+            {
+              "id": "g4",
+              "label": "G4 (back)"
+            },
+            {
+              "id": "g6",
+              "label": "G6 (sniper)"
+            },
+            {
+              "id": "g5",
+              "label": "G5 (forward)"
+            },
+            {
+              "id": "tilt_left",
+              "label": "Wheel left"
+            },
+            {
+              "id": "tilt_right",
+              "label": "Wheel right"
+            },
+            {
+              "id": "g9",
+              "label": "G9"
+            },
+            {
+              "id": "g8",
+              "label": "G8"
+            },
+            {
+              "id": "g7",
+              "label": "G7"
+            }
+          ],
+          "categories": [
+            {
+              "label": "Shortcut",
+              "icon": [
+                "input-keyboard",
+                "input-keyboard-symbolic"
+              ],
+              "kind": "keys"
+            },
+            {
+              "label": "Mouse button",
+              "icon": [
+                "input-mouse",
+                "input-mouse-symbolic"
+              ],
+              "options": [
+                {
+                  "value": {
+                    "button": 1
+                  },
+                  "label": "Left click"
+                },
+                {
+                  "value": {
+                    "button": 2
+                  },
+                  "label": "Right click"
+                },
+                {
+                  "value": {
+                    "button": 3
+                  },
+                  "label": "Middle click"
+                },
+                {
+                  "value": {
+                    "button": 4
+                  },
+                  "label": "Back"
+                },
+                {
+                  "value": {
+                    "button": 5
+                  },
+                  "label": "Forward"
+                }
+              ]
+            },
+            {
+              "label": "Scroll",
+              "icon": [
+                "transform-move-vertical",
+                "go-up",
+                "object-flip-vertical"
+              ],
+              "options": [
+                {
+                  "value": {
+                    "wheel": 1
+                  },
+                  "label": "Scroll up"
+                },
+                {
+                  "value": {
+                    "wheel": -1
+                  },
+                  "label": "Scroll down"
+                },
+                {
+                  "value": {
+                    "hwheel": -1
+                  },
+                  "label": "Scroll left"
+                },
+                {
+                  "value": {
+                    "hwheel": 1
+                  },
+                  "label": "Scroll right"
+                }
+              ]
+            },
+            {
+              "label": "DPI",
+              "icon": [
+                "speedometer",
+                "preferences-desktop-peripherals"
+              ],
+              "options": [
+                {
+                  "value": "dpi_up",
+                  "label": "DPI up"
+                },
+                {
+                  "value": "dpi_down",
+                  "label": "DPI down"
+                },
+                {
+                  "value": "dpi_cycle",
+                  "label": "Cycle DPI stages"
+                },
+                {
+                  "value": "dpi_shift",
+                  "label": "DPI shift (while held)"
+                }
+              ]
+            },
+            {
+              "label": "Nothing",
+              "icon": [
+                "action-unavailable",
+                "dialog-cancel"
+              ],
+              "options": [
+                {
+                  "value": "disabled",
+                  "label": "Do nothing"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "widget": "readout",
+          "label": "Shortcuts",
+          "state": "input_error",
+          "map": {
+            "null": "Ready"
+          },
+          "tooltip": "Shortcuts and scrolling on buttons need the virtual input device"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "state": "status"
+  }
+}

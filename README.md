@@ -1,7 +1,7 @@
 # borochid-logitech-g502x
 
-Borochid device package for the **Logitech G502 X LIGHTSPEED** mouse (on its
-LIGHTSPEED receiver).
+Borochid device package for the **Logitech G502 X LIGHTSPEED** mouse, on its
+LIGHTSPEED receiver or its USB cable.
 
 This repo is **data only**: `logitech.g502x/manifest.json` and the mouse's
 picture. It is published, signed, to the Borochid registry, and the service
@@ -17,15 +17,15 @@ product photography, which is not covered by it. See [NOTICE](NOTICE).
 
 | Section | Purpose |
 |---|---|
-| `match` | `046d:409f`: the mouse as the receiver's kernel driver presents it. Borochid detects devices paired to a receiver as devices of their own. |
-| `channel` | HID: the mouse's own hidraw node under the receiver. |
+| `match` | `046d:409f`: the mouse as the receiver's kernel driver presents it. Borochid detects devices paired to a receiver as devices of their own. `046d:c098`: the mouse on its cable (to charge it, say). Both connections report the same unit ID, so Borochid shows one mouse and uses the cable while it's plugged in. |
+| `channel` | HID, interface 2 (HID++): on the cable, the mouse's HID++ interface; under the receiver, the mouse's own hidraw node. |
 | `driver` | `logitech-hidpp`, compatible versions, and the system package that provides it. |
 | `power_supply` | Battery from the kernel (`hid-logitech-hidpp` already reads it); no device access. |
 | `input` | The service's virtual input device, for buttons bound to shortcuts or scrolling. |
 | `hidpp` | The model profile: the 11 buttons in the order the mouse reports them (bit n-1 = button n), which can be remapped, what each does by default, and the starting DPI stages, shift DPI and report rate. |
-| `display_name` | `Logitech G502 X LS` (as the receiver names it) becomes **Logitech G502 X LIGHTSPEED**. |
+| `display_name` | `Logitech G502 X LS` (as the receiver names it) and `G502 X LIGHTSPEED` (the cable's USB name) become **Logitech G502 X LIGHTSPEED**. |
 | `category`, `image` | `mouse`, and its picture. PNG, at most 384×384 and 256 KiB; `make check` enforces it. |
-| `battery`, `available` | Battery level and charging from the kernel; the mouse is usable while the kernel can reach it. |
+| `battery`, `available` | Battery level and charging from the kernel; the mouse is usable while the kernel can reach it. The kernel doesn't read the battery on the cable, so the cable rule overrides both: the driver reads the battery there, and the mouse is usable while the driver is talking to it. |
 | `summary` | The status line: the active profile's name, or "Asleep". |
 | `ui` | Profile settings (DPI stages, DPI shift, report rate) and the button list. Profiles themselves are switched at the top right of the Borochid window. |
 

@@ -1,13 +1,17 @@
 {
   "schema": 1,
   "id": "logitech.g502x",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "Logitech G502 X",
   "category": "mouse",
   "image": "images/g502x.png",
   "display_name": [
     {
       "match": "Logitech G502 X LS",
+      "format": "Logitech G502 X LIGHTSPEED"
+    },
+    {
+      "match": "G502 X LIGHTSPEED",
       "format": "Logitech G502 X LIGHTSPEED"
     }
   ],
@@ -17,10 +21,27 @@
       "vid": "0x046d",
       "pid": "0x409f",
       "connection": "wireless"
+    },
+    {
+      "bus": "usb",
+      "vid": "0x046d",
+      "pid": "0xc098",
+      "connection": "cable",
+      "battery": {
+        "level": "battery",
+        "charging": "charging"
+      },
+      "available": {
+        "state": "link",
+        "values": [
+          "online"
+        ]
+      }
     }
   ],
   "channel": {
-    "type": "hid"
+    "type": "hid",
+    "interface": 2
   },
   "driver": {
     "type": "logitech-hidpp",

@@ -15,7 +15,8 @@
     {
       "bus": "usb",
       "vid": "0x046d",
-      "pid": "0x409f"
+      "pid": "0x409f",
+      "connection": "wireless"
     }
   ],
   "channel": {
@@ -160,7 +161,7 @@
           "remove": "remove_stage",
           "make_default": "set_default_stage",
           "select": "select_stage",
-          "tooltip": "Click a stage to switch to it. \u2605 marks the stage the profile starts in."
+          "tooltip": "Click a stage to switch to it. ★ marks the stage the profile starts in."
         },
         {
           "widget": "spin",
